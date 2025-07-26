@@ -1,0 +1,10 @@
+﻿global using FluentValidation;
+global using FluentValidation.TestHelper;
+global using Microsoft.Extensions.Logging;
+global using NSubstitute;
+global using ProposalService.Application;
+global using ProposalService.Domain.Entities;
+global using ProposalService.Domain.Interfaces;
+global using ProposalService.Domain.Requests;
+global using ProposalService.UnitTest._Builders.Entities;
+global using ProposalService.UnitTest._Extensions;

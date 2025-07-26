@@ -3,10 +3,10 @@
 public class Result<T>
 {
     public bool IsSuccess { get; private set; }
-
     public T? Value { get; private set; }
-
+    public Exception Exception { get; private set; }
     public string[] Messages { get; private set; } = [];
+
 
     public Result()
     {
@@ -16,6 +16,13 @@ public class Result<T>
     public Result(T value)
     {
         Value = value;
+        IsSuccess = true;
+    }
+
+    public Result(Exception ex)
+    {
+        Exception = ex;
+        IsSuccess = false;
     }
 
     public Result(string message)
@@ -33,6 +40,7 @@ public class Result<T>
     public static Result<T> Success(T value) => new Result<T>(value);
 
     public static Result<T> Error() => new Result<T>();
+    public static Result<T> Error(Exception ex) => new Result<T>(ex);
     public static Result<T> Error(string message) => new Result<T>(message);
     public static Result<T> Error(List<string> messages) => new Result<T>(messages.ToArray());
 }

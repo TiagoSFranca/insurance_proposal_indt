@@ -22,6 +22,8 @@ public class ProposalService : IProposalService
     {
         try
         {
+            ArgumentNullException.ThrowIfNull(request);
+
             var result = _createValidator.Validate(request);
 
             var validationErrors = result.GetMessages();
@@ -33,14 +35,14 @@ public class ProposalService : IProposalService
                 .Where(e => e.Id == request.IdInsuranceType)
                 .AnyAsync();
 
-            if(!existsInsuranceType) return Result<Guid>.Error("Tipo de seguro não encontrado");
+            if (!existsInsuranceType) return Result<Guid>.Error(Messages.InsuranceTypeNotFound);
 
             var existsPaymentMethod = await _context
                 .PaymentMethods
                 .Where(e => e.Id == request.IdPaymentMethod)
                 .AnyAsync();
 
-            if (!existsPaymentMethod) return Result<Guid>.Error("Forma de pagamento não encontrado");
+            if (!existsPaymentMethod) return Result<Guid>.Error(Messages.PaymentMethodNotFound);
 
             var entity = Proposal.Create(
                 request.IdClient,
@@ -57,11 +59,17 @@ public class ProposalService : IProposalService
 
             return Result<Guid>.Success(entity.Id);
         }
+        catch (ArgumentNullException ex)
+        {
+            _logger.LogError(ex, "Error while creating proposal");
+
+            return Result<Guid>.Error(ex);
+        }
         catch (Exception ex)
         {
-            _logger.LogError(ex,"Error while creating proposal");
+            _logger.LogError(ex, "Error while creating proposal");
 
-            return Result<Guid>.Error();
+            return Result<Guid>.Error(ex);
         }
     }
 }
