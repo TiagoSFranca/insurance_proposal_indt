@@ -48,15 +48,17 @@ public class Proposal : DbEntity
 
 public class InsuranceType : DbEntity
 {
-
+    public int Id { get; set; }
+    public string Name { get; set; }
 }
 
 public class PaymentMethod : DbEntity
 {
-
+    public int Id { get; set; }
+    public string Name { get; set; }
 }
 
 public class Client : DbEntity
 {
-
+    public int Id { get; set; }
 }

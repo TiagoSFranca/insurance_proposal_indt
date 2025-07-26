@@ -9,6 +9,8 @@ public interface IProposalContext
 
     DbSet<Proposal> Proposals { get; set; }
     DbSet<ProposalStatus> ProposalStatuses { get; set; }
+    DbSet<InsuranceType> InsuranceTypes { get; set; }
+    DbSet<PaymentMethod> PaymentMethods { get; set; }
 
     DbSet<TEntity> Set<TEntity>()
         where TEntity : DbEntity;

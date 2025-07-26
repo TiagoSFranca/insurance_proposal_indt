@@ -18,6 +18,9 @@ public class ProposalController : BaseController
     {
         var resut = await _service.Create(request);
 
-        return Ok(resut);
+        if (resut.IsSuccess)
+            return Ok(resut);
+
+        return BadRequest(resut.Messages);
     }
 }

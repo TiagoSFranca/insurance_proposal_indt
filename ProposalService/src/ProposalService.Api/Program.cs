@@ -1,7 +1,9 @@
+using FluentValidation;
 using ProposalService.Application.Extensions;
 using ProposalService.Domain.Settings;
 using ProposalService.Persistence.Extensions;
 using Serilog;
+using System.Globalization;
 
 var configuration = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
@@ -18,6 +20,8 @@ Log.Debug("Starting application with timezone {@tz}...", TimeZoneInfo.Local);
 
 try
 {
+    ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("pt-BR");
+
     EnvConstants.ValidateEnvs();
     
     var builder = WebApplication.CreateBuilder(args);
