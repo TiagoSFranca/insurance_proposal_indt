@@ -17,6 +17,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DATABASE_CONNECTION_STRING": "Server=localhost;Port=5432;Database=proposal;User Id=postgres;Password=Postgres2022!;",
+        "USE_EF_MIGRATION": "true",
         "SEED_DATABASE": "true"
       },
       "dotnetRunMessages": true,

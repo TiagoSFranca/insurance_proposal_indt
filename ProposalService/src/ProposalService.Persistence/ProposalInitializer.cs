@@ -57,6 +57,8 @@ namespace ProposalService.Persistence
                 SeedInsuranceType(),
                 SeedPaymentMethod(),
                 SeedProposalStatus());
+
+            await _context.SaveChangesAsync();
         }
 
         private async Task SeedInsuranceType()
@@ -67,10 +69,6 @@ namespace ProposalService.Persistence
             _logger.LogDebug("Seeding {Name}...", nameof(InsuranceType));
 
             _context.InsuranceTypes.AddRange(InsuranceType.Seeds);
-
-            await _context.SaveChangesAsync();
-
-            _logger.LogDebug("Seed of {Name} finalized.", nameof(InsuranceType));
         }
 
         private async Task SeedPaymentMethod()
@@ -81,10 +79,6 @@ namespace ProposalService.Persistence
             _logger.LogDebug("Seeding {Name}...", nameof(PaymentMethod));
 
             _context.PaymentMethods.AddRange(PaymentMethod.Seeds);
-
-            await _context.SaveChangesAsync();
-
-            _logger.LogDebug("Seed of {Name} finalized.", nameof(PaymentMethod));
         }
 
         private async Task SeedProposalStatus()
@@ -95,10 +89,6 @@ namespace ProposalService.Persistence
             _logger.LogDebug("Seeding {Name}...", nameof(ProposalStatus));
 
             _context.ProposalStatuses.AddRange(ProposalStatus.Seeds);
-
-            await _context.SaveChangesAsync();
-
-            _logger.LogDebug("Seed of {Name} finalized.", nameof(ProposalStatus));
         }
     }
 }

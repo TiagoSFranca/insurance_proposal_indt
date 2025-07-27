@@ -2,17 +2,21 @@
 
 public static class DependencyInjectionExtensions
 {
+    internal static void SetOptions(this DbContextOptionsBuilder options, string connString)
+    {
+        options
+            .UseNpgsql(connString)
+            .UseLowerCaseNamingConvention()
+            .UseSnakeCaseNamingConvention();
+    }
+
     public static IServiceCollection AddPersistence(this IServiceCollection services)
     {
         var connString = EnvConstants.DatabaseConnectionString();
 
         services.AddDbContext<ProposalContext>((provider, options) =>
         {
-            options
-                .UseInMemoryDatabase("IN_MEMORY");
-            //.UseNpgsql(connString)
-            //.UseLowerCaseNamingConvention()
-            //.UseSnakeCaseNamingConvention();
+            options.SetOptions(connString);
         });
 
         services.AddScoped<IProposalContext, ProposalContext>();
