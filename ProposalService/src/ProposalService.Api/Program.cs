@@ -1,4 +1,5 @@
 using FluentValidation;
+using ProposalService.Api.Extensions;
 using ProposalService.Application.Extensions;
 using ProposalService.Domain.Settings;
 using ProposalService.Persistence.Extensions;
@@ -23,17 +24,14 @@ try
     ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("pt-BR");
 
     EnvConstants.ValidateEnvs();
-    
+
     var builder = WebApplication.CreateBuilder(args);
 
     builder.Host.UseSerilog();
 
-    builder.Services.AddControllers();
-    builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
-
     builder
         .Services
+        .AddApi()
         .AddApplication()
         .AddPersistence();
 
@@ -54,6 +52,8 @@ try
     app.MapControllers();
 
     app.UseSerilogRequestLogging();
+
+    app.UseHealthChecksEndpoints();
 
     await app.RunAsync();
 }
