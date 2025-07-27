@@ -44,6 +44,7 @@ try
     {
         app.UseSwagger();
         app.UseSwaggerUI();
+        await app.InitializeDatabase();
     }
 
     app.UseHttpsRedirection();
@@ -54,7 +55,7 @@ try
 
     app.UseSerilogRequestLogging();
 
-    app.Run();
+    await app.RunAsync();
 }
 catch (Exception ex)
 {

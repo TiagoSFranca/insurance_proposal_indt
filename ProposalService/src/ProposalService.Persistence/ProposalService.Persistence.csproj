@@ -24,4 +24,8 @@
     <ProjectReference Include="..\ProposalService.Domain\ProposalService.Domain.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
 </Project>

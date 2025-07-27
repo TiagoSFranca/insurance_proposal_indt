@@ -9,13 +9,15 @@ public static class DependencyInjectionExtensions
         services.AddDbContext<ProposalContext>((provider, options) =>
         {
             options
-                .UseInMemoryDatabase(Guid.NewGuid().ToString());
+                .UseInMemoryDatabase("IN_MEMORY");
             //.UseNpgsql(connString)
             //.UseLowerCaseNamingConvention()
             //.UseSnakeCaseNamingConvention();
         });
 
         services.AddScoped<IProposalContext, ProposalContext>();
+
+        services.AddScoped<ProposalInitializer>();
 
         return services;
     }

@@ -3,6 +3,7 @@
 public class InsuranceTypeBuilder : BaseBuilder<InsuranceType>
 {
     private int Id;
+    private string Name;
 
     public InsuranceTypeBuilder WithId(int id)
     {
@@ -12,9 +13,6 @@ public class InsuranceTypeBuilder : BaseBuilder<InsuranceType>
 
     public override InsuranceType Build()
     {
-        return new InsuranceType()
-        {
-            Id = Id,
-        };
+        return new InsuranceType(Id, Name);
     }
 }

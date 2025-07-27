@@ -1,7 +1,6 @@
 ﻿using Bogus;
-using ProposalService.UnitTest._Builders;
 
-namespace ProposalService.Domain.Requests;
+namespace ProposalService.UnitTest._Builders.Requests;
 
 public class CreateProposalRequestBuilder : BaseBuilder<CreateProposalRequest>
 {

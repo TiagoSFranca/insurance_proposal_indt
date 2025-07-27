@@ -1,6 +1,4 @@
-﻿using ProposalService.Domain.Enums;
-
-namespace ProposalService.Domain.Entities;
+﻿namespace ProposalService.Domain.Entities;
 
 public class Proposal : DbEntity
 {
@@ -44,21 +42,4 @@ public class Proposal : DbEntity
             CreatedAt = DateTime.Now
         };
     }
-}
-
-public class InsuranceType : DbEntity
-{
-    public int Id { get; set; }
-    public string Name { get; set; }
-}
-
-public class PaymentMethod : DbEntity
-{
-    public int Id { get; set; }
-    public string Name { get; set; }
-}
-
-public class Client : DbEntity
-{
-    public int Id { get; set; }
 }

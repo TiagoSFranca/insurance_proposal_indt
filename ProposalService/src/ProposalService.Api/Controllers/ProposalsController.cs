@@ -3,11 +3,11 @@ using ProposalService.Api.Models;
 
 namespace ProposalService.Api.Controllers;
 
-public class ProposalController : BaseController
+public class ProposalsController : BaseController
 {
     private readonly IProposalService _service;
 
-    public ProposalController(IProposalService service)
+    public ProposalsController(IProposalService service)
     {
         _service = service;
     }

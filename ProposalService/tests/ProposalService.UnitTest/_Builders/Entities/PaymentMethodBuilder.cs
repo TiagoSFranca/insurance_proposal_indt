@@ -3,6 +3,7 @@
 public class PaymentMethodBuilder : BaseBuilder<PaymentMethod>
 {
     private int Id;
+    private string Name;
 
     public PaymentMethodBuilder WithId(int id)
     {
@@ -12,9 +13,6 @@ public class PaymentMethodBuilder : BaseBuilder<PaymentMethod>
 
     public override PaymentMethod Build()
     {
-        return new PaymentMethod()
-        {
-            Id = Id,
-        };
+        return new PaymentMethod(Id, Name);
     }
 }

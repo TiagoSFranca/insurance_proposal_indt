@@ -14,4 +14,11 @@ public class ProposalContext : DbContext, IProposalContext
     public DbSet<PaymentMethod> PaymentMethods { get; set; }
 
     public new DbSet<TEntity> Set<TEntity>() where TEntity : DbEntity => base.Set<TEntity>();
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProposalContext).Assembly);
+    }
 }

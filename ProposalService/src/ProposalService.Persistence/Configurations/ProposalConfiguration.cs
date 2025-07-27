@@ -13,5 +13,15 @@ public class ProposalConfiguration : IEntityTypeConfiguration<Proposal>
             .WithMany()
             .HasForeignKey(e => e.IdStatus)
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasOne(e => e.InsuranceType)
+            .WithMany()
+            .HasForeignKey(e => e.IdInsuranceType)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasOne(e => e.PaymentMethod)
+            .WithMany()
+            .HasForeignKey(e => e.IdPaymentMethod)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace ProposalService.Domain.Interfaces;
+﻿namespace ProposalService.Domain.Interfaces.Services;
 
 public interface IProposalService
 {

@@ -85,7 +85,18 @@ public class ProposalService : IProposalService
         if (request.Id.HasValue)
             query = query.Where(e => e.Id == request.Id);
 
-        var select = query.Select(e => new ProposalBriefResponse(e.Id, e.IdClient, e.IdInsuranceType, e.IdPaymentMethod, e.StartAt, e.EndAt, e.CreatedAt));
+        var select = query.Select(e => new ProposalBriefResponse(
+            e.Id,
+            e.IdClient,
+            e.IdStatus,
+            e.IdInsuranceType,
+            e.IdPaymentMethod,
+            e.StartAt,
+            e.EndAt,
+            e.CreatedAt,
+            new ProposalStatusResponse(e.Status.Id, e.Status.Name),
+            new InsuranceTypeResponse(e.InsuranceType.Id, e.InsuranceType.Name),
+            new PaymentMethodResponse(e.PaymentMethod.Id, e.PaymentMethod.Name)));
 
         var result = await PaginationHelper.Paginate(select, page);
 

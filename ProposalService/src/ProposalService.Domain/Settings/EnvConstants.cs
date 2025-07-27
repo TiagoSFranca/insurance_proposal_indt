@@ -6,6 +6,8 @@ public static class EnvConstants
 {
     private const string ENV_ASPNETCORE_ENVIRONMENT = "ASPNETCORE_ENVIRONMENT";
     private const string ENV_DATABASE_CONNECTION_STRING = "DATABASE_CONNECTION_STRING";
+    private const string ENV_USE_EF_MIGRATION = "USE_EF_MIGRATION";
+    private const string ENV_SEED_DATABASE= "SEED_DATABASE";
 
     private static string? GetEnvironmentVariable(string name)
     {
@@ -30,6 +32,24 @@ public static class EnvConstants
 
     public static string AspNetCoreEnvironment() => GetRequiredEnvironmentVariable(ENV_ASPNETCORE_ENVIRONMENT);
     public static string DatabaseConnectionString() => GetRequiredEnvironmentVariable(ENV_DATABASE_CONNECTION_STRING);
+    public static bool UseEFMigration()
+    {
+        var result = GetEnvironmentVariable(ENV_USE_EF_MIGRATION);
+
+        if (bool.TryParse(result, out bool useMigration))
+            return useMigration;
+
+        return useMigration;
+    }
+    public static bool SeedDatabase()
+    {
+        var result = GetEnvironmentVariable(ENV_SEED_DATABASE);
+
+        if (bool.TryParse(result, out bool seed))
+            return seed;
+
+        return seed;
+    }
 
     public static void ValidateEnvs()
     {

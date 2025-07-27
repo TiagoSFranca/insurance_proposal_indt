@@ -7,4 +7,5 @@ global using ProposalService.Domain.Entities;
 global using ProposalService.Domain.Interfaces;
 global using ProposalService.Domain.Requests;
 global using ProposalService.UnitTest._Builders.Entities;
+global using ProposalService.UnitTest._Builders.Requests;
 global using ProposalService.UnitTest._Extensions;
