@@ -57,7 +57,7 @@ public class ProposalService : IProposalService
 
             await _context.SaveChangesAsync();
 
-            return Result<Guid>.Success(entity.Id);
+            return entity.Id;
         }
         catch (ArgumentNullException ex)
         {
@@ -71,5 +71,24 @@ public class ProposalService : IProposalService
 
             return Result<Guid>.Error(ex);
         }
+    }
+
+    public async Task<Result<PageResponse<ProposalBriefResponse>>> Search(SearchProposalRequest request, PageRequest page)
+    {
+        ArgumentNullException.ThrowIfNull(request);
+
+        var query = _context.Proposals.AsQueryable();
+
+        if (page is null)
+            page = PageRequest.First();
+
+        if (request.Id.HasValue)
+            query = query.Where(e => e.Id == request.Id);
+
+        var select = query.Select(e => new ProposalBriefResponse(e.Id, e.IdClient, e.IdInsuranceType, e.IdPaymentMethod, e.StartAt, e.EndAt, e.CreatedAt));
+
+        var result = await PaginationHelper.Paginate(select, page);
+
+        return result;
     }
 }

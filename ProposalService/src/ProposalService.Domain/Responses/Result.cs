@@ -37,6 +37,8 @@ public class Result<T>
         IsSuccess = false;
     }
 
+    public static implicit operator Result<T>(T result) => new Result<T>(result);
+
     public static Result<T> Success(T value) => new Result<T>(value);
 
     public static Result<T> Error() => new Result<T>();

@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using ProposalService.Domain.Interfaces;
-using ProposalService.Domain.Requests;
+using ProposalService.Api.Models;
 
 namespace ProposalService.Api.Controllers;
 
@@ -14,13 +13,26 @@ public class ProposalController : BaseController
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create([FromBody] CreateProposalRequest request)
+    public async Task<ActionResult<Guid>> Create([FromBody] CreateProposalRequest request)
     {
-        var resut = await _service.Create(request);
+        var result = await _service.Create(request);
 
-        if (resut.IsSuccess)
-            return Ok(resut);
+        if (result.IsSuccess)
+            return Ok(result.Value);
 
-        return BadRequest(resut.Messages);
+        return BadRequest(result.Messages);
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<PageResponse<ProposalBriefResponse>>> Search(
+        [FromQuery] SearchProposalRequest request,
+        [FromQuery] SimplePageRequest page)
+    {
+        var result = await _service.Search(request, PageRequest.Of(page.Number, page.Limit));
+
+        if (result.IsSuccess)
+            return Ok(result.Value);
+
+        return BadRequest(result.Messages);
     }
 }
