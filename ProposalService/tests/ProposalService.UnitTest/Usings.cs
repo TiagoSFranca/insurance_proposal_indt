@@ -9,4 +9,5 @@ global using ProposalService.Domain.Requests;
 global using ProposalService.UnitTest._Builders.Entities;
 global using ProposalService.UnitTest._Builders.Requests;
 global using ProposalService.UnitTest._Extensions;
+global using ProposalService.UnitTest._Helpers;
 global using static ProposalService.UnitTest._Helpers.DbSetHelpers;

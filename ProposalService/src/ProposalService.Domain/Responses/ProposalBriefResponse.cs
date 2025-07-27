@@ -9,6 +9,7 @@ public record ProposalBriefResponse(
     DateOnly StartAt,
     DateOnly EndAt,
     DateTime CreatedAt,
+    DateTime? UpdatedAt,
     ProposalStatusResponse Status,
     InsuranceTypeResponse InsuranceType,
     PaymentMethodResponse PaymentMethod);

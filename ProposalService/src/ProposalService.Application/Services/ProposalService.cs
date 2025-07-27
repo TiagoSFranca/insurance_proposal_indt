@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ProposalService.Application.Extensions;
+using ProposalService.Domain.Enums;
 
 namespace ProposalService.Application.Services;
 
@@ -105,6 +106,7 @@ public class ProposalService : IProposalService
             e.StartAt,
             e.EndAt,
             e.CreatedAt,
+            e.UpdatedAt,
             new ProposalStatusResponse(e.Status.Id, e.Status.Name),
             new InsuranceTypeResponse(e.InsuranceType.Id, e.InsuranceType.Name),
             new PaymentMethodResponse(e.PaymentMethod.Id, e.PaymentMethod.Name)));
@@ -112,5 +114,45 @@ public class ProposalService : IProposalService
         var result = await PaginationHelper.Paginate(select, page);
 
         return result;
+    }
+
+    public async Task<Result> UpdateStatus(Guid id, int idStatus)
+    {
+        try
+        {
+            var proposal = await _context
+                .Proposals
+                .Where(e => e.Id == id)
+                .FirstOrDefaultAsync();
+
+            if (proposal is null)
+                return Result.Error(Messages.ProposalNotFound);
+
+            var existsStatus = await _context
+                .ProposalStatuses
+                .Where(e => e.Id == idStatus)
+                .AnyAsync();
+
+            if (!existsStatus)
+                return Result.Error(Messages.ProposalStatusNotFound);
+
+            if (proposal.IdStatus != (int)EProposalStatus.Analyzing)
+                return Result.Error(Messages.ProposalCantChangeStatus);
+
+            if (proposal.IdStatus == idStatus)
+                return Result.Error(Messages.ProposalWithSameStatus);
+
+            proposal.UpdateStatus(idStatus);
+
+            await _context.SaveChangesAsync();
+
+            return Result.Success();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error while updating proposal with id {Id} to status {IdStatus}", id, idStatus);
+
+            return Result.Error(ex);
+        }
     }
 }
