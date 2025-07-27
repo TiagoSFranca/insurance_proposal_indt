@@ -2,8 +2,8 @@
 
 public class Proposal : DbEntity
 {
-    public Guid Id { get; set; }
-    public Guid IdClient { get; set; }
+    public Guid Id { get; private set; }
+    public Guid IdClient { get; private set; }
     public int IdStatus { get; private set; }
     public int IdInsuranceType { get; private set; }
     public int IdPaymentMethod { get; private set; }

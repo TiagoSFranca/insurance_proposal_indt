@@ -116,6 +116,32 @@ public class ProposalService : IProposalService
         return result;
     }
 
+    public async Task<ProposalResponse?> Get(Guid id)
+    {
+        var result = await _context
+            .Proposals
+            .Where(e => e.Id == id)
+            .Select(e => new ProposalResponse(
+                e.Id,
+                e.IdClient,
+                e.IdStatus,
+                e.IdInsuranceType,
+                e.IdPaymentMethod,
+                e.Premium,
+                e.Notes,
+                e.StartAt,
+                e.EndAt,
+                e.CreatedAt,
+                e.UpdatedAt,
+                new ProposalStatusResponse(e.Status.Id, e.Status.Name),
+                new InsuranceTypeResponse(e.InsuranceType.Id, e.InsuranceType.Name),
+                new PaymentMethodResponse(e.PaymentMethod.Id, e.PaymentMethod.Name),
+                new ClientResponse(e.Client.Id, e.Client.CreatedAt)))
+            .FirstOrDefaultAsync();
+
+        return result;
+    }
+
     public async Task<Result> UpdateStatus(Guid id, int idStatus)
     {
         try

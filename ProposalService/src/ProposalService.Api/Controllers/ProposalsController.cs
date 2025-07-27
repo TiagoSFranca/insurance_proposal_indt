@@ -36,6 +36,17 @@ public class ProposalsController : BaseController
         return BadRequest(result.Messages);
     }
 
+    [HttpGet("/{id}")]
+    public async Task<IActionResult> UpdateStatus(Guid id)
+    {
+        var result = await _service.Get(id);
+
+        if (result is null)
+            return NotFound();
+
+        return Ok(result);
+    }
+
     [HttpPut("/{id}/updateStatus")]
     public async Task<IActionResult> UpdateStatus(Guid id, [FromQuery] int idStatus)
     {
