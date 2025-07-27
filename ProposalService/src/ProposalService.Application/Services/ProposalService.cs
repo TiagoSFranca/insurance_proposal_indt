@@ -44,6 +44,17 @@ public class ProposalService : IProposalService
 
             if (!existsPaymentMethod) return Result<Guid>.Error(Messages.PaymentMethodNotFound);
 
+            var existsClient = await _context
+                .Clients
+                .Where(e => e.Id == request.IdClient)
+                .AnyAsync();
+
+            if (!existsClient)
+            {
+                _logger.LogWarning("Client with id: {Id} not foud, creating...", request.IdClient);
+                _context.Clients.Add(new Client(request.IdClient, DateTime.Now));
+            }
+
             var entity = Proposal.Create(
                 request.IdClient,
                 request.IdInsuranceType,

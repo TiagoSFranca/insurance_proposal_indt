@@ -9,6 +9,11 @@ public class ProposalConfiguration : IEntityTypeConfiguration<Proposal>
         builder.Property(e => e.Id)
             .ValueGeneratedOnAdd();
 
+        builder.HasOne(e => e.Client)
+            .WithMany()
+            .HasForeignKey(e => e.IdClient)
+            .OnDelete(DeleteBehavior.Restrict);
+
         builder.HasOne(e => e.Status)
             .WithMany()
             .HasForeignKey(e => e.IdStatus)

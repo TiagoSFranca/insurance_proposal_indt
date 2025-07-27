@@ -17,6 +17,7 @@ public class CreateProposalRequestBuilder : BaseBuilder<CreateProposalRequest>
     {
         Faker faker = new Faker();
 
+        IdClient = Guid.NewGuid();
         IdInsuranceType = faker.Random.Int(1, 10);
         IdPaymentMethod = faker.Random.Int(1, 10);
     }

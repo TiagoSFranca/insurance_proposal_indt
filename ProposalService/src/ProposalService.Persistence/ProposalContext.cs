@@ -9,6 +9,7 @@ public class ProposalContext : DbContext, IProposalContext
     }
 
     public DbSet<Proposal> Proposals { get; set; }
+    public DbSet<Client> Clients { get; set; }
     public DbSet<ProposalStatus> ProposalStatuses { get; set; }
     public DbSet<InsuranceType> InsuranceTypes { get; set; }
     public DbSet<PaymentMethod> PaymentMethods { get; set; }

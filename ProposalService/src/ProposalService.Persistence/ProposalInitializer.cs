@@ -53,10 +53,9 @@ namespace ProposalService.Persistence
 
         private async Task TrySeedAsync()
         {
-            await Task.WhenAll(
-                SeedInsuranceType(),
-                SeedPaymentMethod(),
-                SeedProposalStatus());
+            await SeedInsuranceType();
+            await SeedPaymentMethod();
+            await SeedProposalStatus();
 
             await _context.SaveChangesAsync();
         }

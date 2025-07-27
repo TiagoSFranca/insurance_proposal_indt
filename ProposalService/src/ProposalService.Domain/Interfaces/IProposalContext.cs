@@ -8,6 +8,7 @@ public interface IProposalContext
     DatabaseFacade Database { get; }
 
     DbSet<Proposal> Proposals { get; set; }
+    DbSet<Client> Clients { get; set; }
     DbSet<ProposalStatus> ProposalStatuses { get; set; }
     DbSet<InsuranceType> InsuranceTypes { get; set; }
     DbSet<PaymentMethod> PaymentMethods { get; set; }

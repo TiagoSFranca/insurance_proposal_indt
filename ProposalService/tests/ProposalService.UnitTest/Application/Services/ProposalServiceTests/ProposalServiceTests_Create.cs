@@ -124,6 +124,45 @@ public class ProposalServiceTests_Create
     }
 
     [Fact]
+    public async Task Should_Create_Client_When_Not_Found()
+    {
+        var request = _requestBuilder.Build();
+
+        var setInsuranceTypes = new List<InsuranceType>()
+        {
+            new InsuranceTypeBuilder()
+            .WithId(request.IdInsuranceType)
+            .Build(),
+        }.AsDbSet();
+
+        _context.InsuranceTypes.Returns(setInsuranceTypes);
+
+        var setPayments = new List<PaymentMethod>()
+        {
+            new PaymentMethodBuilder()
+            .WithId(request.IdPaymentMethod)
+            .Build(),
+        }.AsDbSet();
+
+        _context.PaymentMethods.Returns(setPayments);
+
+        var setClients = EmptyDbSet<Client>();
+
+        _context.Clients.Returns(setClients);
+
+        var result = await _sut.Create(request);
+
+        Assert.Multiple(() =>
+        {
+            Assert.True(result.IsSuccess);
+            Assert.Empty(result.Messages);
+
+            _context.Clients.Received().Add(Arg.Any<Client>());
+            _context.Received().SaveChangesAsync();
+        });
+    }
+
+    [Fact]
     public async Task Should_Create()
     {
         var request = _requestBuilder.Build();
@@ -146,6 +185,15 @@ public class ProposalServiceTests_Create
 
         _context.PaymentMethods.Returns(setPayments);
 
+        var setClients = new List<Client>()
+        {
+            new ClientBuilder()
+                .WithId(request.IdClient)
+                .Build(),
+        }.AsDbSet();
+
+        _context.Clients.Returns(setClients);
+
         var result = await _sut.Create(request);
 
         Assert.Multiple(() =>
@@ -153,6 +201,7 @@ public class ProposalServiceTests_Create
             Assert.True(result.IsSuccess);
             Assert.Empty(result.Messages);
 
+            _context.Clients.DidNotReceive().Add(Arg.Any<Client>());
             _context.Received().SaveChangesAsync();
         });
     }
@@ -179,6 +228,10 @@ public class ProposalServiceTests_Create
         }.AsDbSet();
 
         _context.PaymentMethods.Returns(setPayments);
+
+        var setClients = EmptyDbSet<Client>();
+
+        _context.Clients.Returns(setClients);
 
         var message = _faker.Lorem.Word();
 
