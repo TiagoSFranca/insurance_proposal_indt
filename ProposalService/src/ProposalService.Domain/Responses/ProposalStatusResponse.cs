@@ -1,3 +1,3 @@
 ﻿namespace ProposalService.Domain.Responses;
 
-public record InsuranceTypeResponse(int Id, string Name);
+public record ProposalStatusResponse(int Id, string Name);

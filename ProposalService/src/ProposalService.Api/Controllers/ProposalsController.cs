@@ -36,7 +36,7 @@ public class ProposalsController : BaseController
         return BadRequest(result.Messages);
     }
 
-    [HttpGet("/{id}")]
+    [HttpGet("{id}")]
     public async Task<ActionResult<ProposalResponse>> Get(Guid id)
     {
         var result = await _service.Get(id);
@@ -47,7 +47,7 @@ public class ProposalsController : BaseController
         return Ok(result);
     }
 
-    [HttpPut("/{id}/updateStatus")]
+    [HttpPut("{id}/updateStatus")]
     public async Task<IActionResult> UpdateStatus(Guid id, [FromQuery] int idStatus)
     {
         var result = await _service.UpdateStatus(id, idStatus);

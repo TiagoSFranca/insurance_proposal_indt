@@ -3,7 +3,7 @@
 namespace ProposalService.Api.Controllers;
 
 [ApiController]
-[Route("proposal/api/[controller]")]
+[Route("proposalService/api/[controller]")]
 public abstract class BaseController : ControllerBase
 {
 

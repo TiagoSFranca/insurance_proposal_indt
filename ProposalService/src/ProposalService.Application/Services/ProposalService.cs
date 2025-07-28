@@ -91,11 +91,13 @@ public class ProposalService : IProposalService
 
         var query = _context.Proposals.AsQueryable();
 
-        if (page is null)
-            page = PageRequest.First();
+        page ??= PageRequest.First();
 
-        if (request.Id.HasValue)
-            query = query.Where(e => e.Id == request.Id);
+        if (request.Ids is not null && request.Ids.Count != 0)
+            query = query.Where(e => request.Ids.Contains(e.Id));
+
+        if (request.IdStatuses is not null && request.IdStatuses.Count != 0)
+            query = query.Where(e => request.IdStatuses.Contains(e.IdStatus));
 
         var select = query.Select(e => new ProposalBriefResponse(
             e.Id,

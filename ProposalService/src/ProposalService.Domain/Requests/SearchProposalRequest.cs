@@ -2,5 +2,6 @@
 
 public class SearchProposalRequest
 {
-    public Guid? Id { get; set; }
+    public List<Guid>? Ids { get; set; }
+    public List<int>? IdStatuses { get; set; }
 }
