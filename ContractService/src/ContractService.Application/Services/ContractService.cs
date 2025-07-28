@@ -22,7 +22,7 @@ public class ContractService : IContractService
         {
             ArgumentNullException.ThrowIfNull(request);
 
-            var proposalResult = await _proposalRepository.GetById(request.IdProposal);
+            var proposalResult = await _proposalRepository.Get(request.IdProposal);
 
             if (!proposalResult.IsSuccess) return Result<Guid>.Error([.. proposalResult.Messages]);
 
@@ -106,7 +106,7 @@ public class ContractService : IContractService
 
         if (result is not null)
         {
-            var proposal = await _proposalRepository.GetById(result.IdProposal);
+            var proposal = await _proposalRepository.Get(result.IdProposal);
 
             if (!proposal.IsSuccess)
                 _logger.LogWarning("Proposal with id {Id} not found", result.IdProposal);

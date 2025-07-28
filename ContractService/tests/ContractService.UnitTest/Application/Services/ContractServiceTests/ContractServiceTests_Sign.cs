@@ -33,7 +33,7 @@ public class ContractServiceTests_Create
         var setContracts = EmptyDbSet<Contract>();
         _context.Contracts.Returns(setContracts);
 
-        _proposalRepository.GetById(Arg.Any<Guid>())
+        _proposalRepository.Get(Arg.Any<Guid>())
             .Returns(_proposalResponseBuilder.Build());
 
         _sut = new ContractService.Application.Services.ContractService(_context, _proposalRepository, _logger);
@@ -57,7 +57,7 @@ public class ContractServiceTests_Create
     {
         var message = _faker.Lorem.Word();
 
-        _proposalRepository.GetById(Arg.Any<Guid>())
+        _proposalRepository.Get(Arg.Any<Guid>())
             .Returns(Result<ProposalResponse>.Error(message));
 
         var result = await _sut.Sign(_requestBuilder.Build());
@@ -75,7 +75,7 @@ public class ContractServiceTests_Create
     {
         var message = _faker.Lorem.Word();
 
-        _proposalRepository.GetById(Arg.Any<Guid>())
+        _proposalRepository.Get(Arg.Any<Guid>())
             .Returns(_proposalResponseBuilder
                 .WithIdStatus((int)EProposalStatus.Analyzing)
                 .Build());
@@ -93,7 +93,7 @@ public class ContractServiceTests_Create
     [Fact]
     public async Task Should_Return_Error_When_Proposal_Is_Rejected()
     {
-        _proposalRepository.GetById(Arg.Any<Guid>())
+        _proposalRepository.Get(Arg.Any<Guid>())
             .Returns(_proposalResponseBuilder
                 .WithIdStatus((int)EProposalStatus.Rejected)
                 .Build());

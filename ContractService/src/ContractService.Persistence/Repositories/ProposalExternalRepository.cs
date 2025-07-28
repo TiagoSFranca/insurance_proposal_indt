@@ -21,7 +21,7 @@ public class ProposalExternalRepository : IProposalRepository
         _logger = logger;
     }
 
-    public async Task<Result<ProposalResponse>> GetById(Guid id)
+    public async Task<Result<ProposalResponse>> Get(Guid id)
     {
         try
         {
@@ -54,7 +54,7 @@ public class ProposalExternalRepository : IProposalRepository
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error while deserializing result.");
+            _logger.LogError(ex, "Error while getting proposal with id {Id}.", id);
 
             return Result<ProposalResponse>.Error(Messages.ErrorWhileSearchingProposal);
         }

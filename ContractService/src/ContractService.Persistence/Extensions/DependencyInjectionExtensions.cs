@@ -42,6 +42,9 @@ public static class DependencyInjectionExtensions
         return HttpPolicyExtensions
             .HandleTransientHttpError()
             .OrResult(msg => msg.StatusCode == System.Net.HttpStatusCode.NotFound)
-            .WaitAndRetryAsync(delay);
+            .WaitAndRetryAsync(delay, onRetry: (exception, timeSpan, retryAttempt, context) =>
+            {
+                Console.WriteLine($"Retry {retryAttempt} due to {exception.Exception.Message}. Waiting {timeSpan.TotalSeconds}s...");
+            });
     }
 }

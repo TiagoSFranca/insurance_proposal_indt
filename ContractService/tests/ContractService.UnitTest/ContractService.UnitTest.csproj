@@ -22,7 +22,6 @@
     <ProjectReference Include="..\..\..\InsuranceProposal.UnitTest.Common\InsuranceProposal.UnitTest.Common.csproj" />
     <ProjectReference Include="..\..\src\ContractService.Application\ContractService.Application.csproj" />
     <ProjectReference Include="..\..\src\ContractService.Domain\ContractService.Domain.csproj" />
-    <ProjectReference Include="..\..\src\ContractService.Persistence\ContractService.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>

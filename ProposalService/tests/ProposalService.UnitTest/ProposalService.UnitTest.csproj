@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -23,7 +23,6 @@
     <ProjectReference Include="..\..\..\InsuranceProposal.UnitTest.Common\InsuranceProposal.UnitTest.Common.csproj" />
     <ProjectReference Include="..\..\src\ProposalService.Application\ProposalService.Application.csproj" />
     <ProjectReference Include="..\..\src\ProposalService.Domain\ProposalService.Domain.csproj" />
-    <ProjectReference Include="..\..\src\ProposalService.Persistence\ProposalService.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>
