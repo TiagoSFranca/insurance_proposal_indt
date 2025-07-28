@@ -1,5 +1,4 @@
 using ContractService.Api.Models;
-using ContractService.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContractService.Api.Controllers;
@@ -37,7 +36,7 @@ public class ContractsController : BaseController
         return BadRequest(result.Messages);
     }
 
-    [HttpGet("/{id}")]
+    [HttpGet("{id}")]
     public async Task<ActionResult<ContractResponse>> Get(Guid id)
     {
         var result = await _service.Get(id);

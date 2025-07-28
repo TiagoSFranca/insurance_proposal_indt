@@ -8,6 +8,11 @@ namespace ContractService.Persistence.Repositories;
 
 public class ProposalExternalRepository : IProposalRepository
 {
+    private readonly JsonSerializerOptions _defaultOptions = new()
+    {
+        PropertyNameCaseInsensitive = true
+    };
+
     private readonly HttpClient _httpClient;
     private readonly ILogger<ProposalExternalRepository> _logger;
 
@@ -37,7 +42,7 @@ public class ProposalExternalRepository : IProposalRepository
             {
                 var content = await httpResponse.Content.ReadAsStringAsync();
 
-                var result = JsonSerializer.Deserialize<ProposalResponse>(content);
+                var result = JsonSerializer.Deserialize<ProposalResponse>(content, _defaultOptions);
 
                 return result!;
             }

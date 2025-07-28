@@ -3,7 +3,7 @@
 namespace ContractService.Api.Controllers;
 
 [ApiController]
-[Route("contract/api/[controller]")]
+[Route("contractService/api/[controller]")]
 public abstract class BaseController : ControllerBase
 {
 

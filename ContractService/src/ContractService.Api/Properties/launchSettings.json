@@ -19,7 +19,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DATABASE_CONNECTION_STRING": "Server=localhost;Port=5432;Database=contract;User Id=postgres;Password=Postgres2022!;",
-        "PROPOSAL_SERVICE_ADDRESS": "http://localhost",
+        "PROPOSAL_SERVICE_ADDRESS": "http://localhost:5050/proposalService/api/",
         "USE_EF_MIGRATION": "true"
       }
     }

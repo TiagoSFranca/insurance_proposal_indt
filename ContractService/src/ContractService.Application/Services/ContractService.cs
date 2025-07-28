@@ -1,5 +1,4 @@
-﻿using ContractService.Domain.Interfaces.Repositories;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace ContractService.Application.Services;
@@ -23,19 +22,39 @@ public class ContractService : IContractService
         {
             ArgumentNullException.ThrowIfNull(request);
 
-            var proposal = await _proposalRepository.GetById(request.IdProposal);
+            var proposalResult = await _proposalRepository.GetById(request.IdProposal);
 
-            if (!proposal.IsSuccess) return Result<Guid>.Error(proposal.Messages.ToList());
+            if (!proposalResult.IsSuccess) return Result<Guid>.Error([.. proposalResult.Messages]);
 
-            var entity = Contract.Create(
-                request.IdProposal,
-                request.SignAt);
+            var proposal = proposalResult.Value!;
 
-            _context.Contracts.Add(entity);
+            if (proposal.IdStatus != (int)EProposalStatus.Aproved)
+            {
+                var message = Messages.ProposalAnalysing;
 
-            await _context.SaveChangesAsync();
+                if (proposal.IdStatus == (int)EProposalStatus.Rejected) message = Messages.ProposalRejected;
 
-            return entity.Id;
+                return Result<Guid>.Error(message);
+            }
+            else
+            {
+                var existsContract = await _context
+                    .Contracts
+                    .Where(e => e.IdProposal == request.IdProposal)
+                    .AnyAsync();
+
+                if (existsContract) return Result<Guid>.Error(Messages.ContractAlreadySigned);
+
+                var entity = Contract.Create(
+                    request.IdProposal,
+                    request.SignAt);
+
+                _context.Contracts.Add(entity);
+
+                await _context.SaveChangesAsync();
+
+                return entity.Id;
+            }
         }
         catch (ArgumentNullException ex)
         {
@@ -57,8 +76,7 @@ public class ContractService : IContractService
 
         var query = _context.Contracts.AsQueryable();
 
-        if (page is null)
-            page = PageRequest.First();
+        page ??= PageRequest.First();
 
         if (request.Id.HasValue)
             query = query.Where(e => e.Id == request.Id);

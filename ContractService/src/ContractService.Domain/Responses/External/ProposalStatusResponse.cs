@@ -1,3 +1,3 @@
 ﻿namespace ContractService.Domain.Responses.External;
 
-public record InsuranceTypeResponse(int Id, string Name);
+public record ProposalStatusResponse(int Id, string Name);
