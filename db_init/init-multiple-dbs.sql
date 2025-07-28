@@ -1,0 +1,2 @@
+CREATE DATABASE proposal;
+CREATE DATABASE contract;

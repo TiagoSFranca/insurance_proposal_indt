@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  insurance-proposal-db:
+    image: postgres
+    container_name: insurance-proposal-db
+    ports:
+      - 5434:5432
+    environment:
+      POSTGRES_PASSWORD: "Postgres2022!"
+    volumes:
+      - ./db_init:/docker-entrypoint-initdb.d
+      - insurance-proposal-db:/var/lib/postgresql/data
+
+  proposal-service:
+    image: proposal-service:latest
+    container_name: proposal-service
+    ports:
+      - "8080:80"
+      - "8081:81"
+    depends_on:
+      - insurance-proposal-db
+    environment:
+      DATABASE_CONNECTION_STRING: "Server=insurance-proposal-db;Port=5432;Database=proposal;User Id=postgres;Password=Postgres2022!;"
+      USE_EF_MIGRATION: "true"
+      SEED_DATABASE: "true"
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_URLS: "http://+:80"
+
+  contract-service:
+    image: contract-service:latest
+    container_name: contract-service
+    ports:
+      - "8090:80"
+      - "8091:81"
+    depends_on:
+      - insurance-proposal-db
+      - proposal-service
+    environment:
+      DATABASE_CONNECTION_STRING: "Server=insurance-proposal-db;Port=5432;Database=contract;User Id=postgres;Password=Postgres2022!;"
+      USE_EF_MIGRATION: "true"
+      ASPNETCORE_ENVIRONMENT: "Development"
+      PROPOSAL_SERVICE_ADDRESS: 'http://proposal-service:80/proposalService/api/'
+      ASPNETCORE_URLS: "http://+:80"
+      
+volumes:
+  insurance-proposal-db:

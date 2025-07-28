@@ -12,19 +12,19 @@ EXPOSE 81
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/ProposalService.Api/ProposalService.Api.csproj", "src/ProposalService.Api/"]
-RUN dotnet restore "./src/ProposalService.Api/ProposalService.Api.csproj"
+COPY . ./
+RUN dotnet restore "ContractService/src/ContractService.Api/ContractService.Api.csproj"
 COPY . .
-WORKDIR "/src/src/ProposalService.Api"
-RUN dotnet build "./ProposalService.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/ContractService/src/ContractService.Api"
+RUN dotnet build "./ContractService.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./ProposalService.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./ContractService.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "ProposalService.Api.dll"]
+ENTRYPOINT ["dotnet", "ContractService.Api.dll"]
