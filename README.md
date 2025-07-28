@@ -82,7 +82,7 @@ Variable name | Optional | Default value | Exemplo | Description |
 **ASPNETCORE_ENVIRONMENT** | | | `Development`, `Staging`, `Production` | O ambiente que está sendo feito deploy no momento |
 **DATABASE_CONNECTION_STRING** | | | Server=`SERVER`;Port=`PORT`;Database=`DB`;User Id=`USER`;Password=`PWD`; | String de conexão com o banco de dados. [Referência](https://docs.microsoft.com/pt-br/ef/core/miscellaneous/connection-strings) |
 **USE_EF_MIGRATION** | X | `false` | `true`, `false` | Flag para iniciar a migração caso o ambiente seja `Development` |
-**PROPOSAL_SERVICE_ADDRESS** | | | `true`, `false` | Flag para popular as tabelas satelites caso o ambiente seja `Development` |
+**PROPOSAL_SERVICE_ADDRESS** | | | `http://localhost:8080/proposalService/api/` | Base url do `ProposalService` |
 
 #### Docker
 
