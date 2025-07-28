@@ -37,7 +37,7 @@ public class ProposalsController : BaseController
     }
 
     [HttpGet("/{id}")]
-    public async Task<IActionResult> UpdateStatus(Guid id)
+    public async Task<ActionResult<ProposalResponse>> Get(Guid id)
     {
         var result = await _service.Get(id);
 

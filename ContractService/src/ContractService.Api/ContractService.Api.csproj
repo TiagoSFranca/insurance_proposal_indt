@@ -6,8 +6,24 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+	<ItemGroup>
+		<PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.18" />
+		<PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+		<PackageReference Include="Serilog.Enrichers.Demystifier" Version="1.0.3" />
+		<PackageReference Include="Serilog.Enrichers.GlobalLogContext" Version="3.0.0">
+			<TreatAsUsed>true</TreatAsUsed>
+		</PackageReference>
+		<PackageReference Include="Serilog.Enrichers.Sensitive" Version="1.7.3">
+			<TreatAsUsed>true</TreatAsUsed>
+		</PackageReference>
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.3" />
+	</ItemGroup>
+
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <ProjectReference Include="..\ContractService.Application\ContractService.Application.csproj" />
+    <ProjectReference Include="..\ContractService.Domain\ContractService.Domain.csproj" />
+    <ProjectReference Include="..\ContractService.Persistence\ContractService.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

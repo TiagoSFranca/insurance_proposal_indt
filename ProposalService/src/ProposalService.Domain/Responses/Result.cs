@@ -89,4 +89,3 @@ public class Result<T> : IResult
     public static Result<T> Error(string message) => new Result<T>(message);
     public static Result<T> Error(List<string> messages) => new Result<T>(messages.ToArray());
 }
-

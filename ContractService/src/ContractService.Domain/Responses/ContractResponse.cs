@@ -1,14 +1,12 @@
-﻿namespace ContractService.Domain.Responses;
+﻿using ContractService.Domain.Responses.External;
+
+namespace ContractService.Domain.Responses;
 
 public record ContractResponse(
     Guid Id,
-    Guid IdClient,
-    int IdStatus,
-    int IdInsuranceType,
-    int IdPaymentMethod,
-    decimal Premium,
-    string? Notes,
-    DateOnly StartAt,
-    DateOnly EndAt,
-    DateTime CreatedAt,
-    DateTime? UpdatedAt);
+    Guid IdProposal,
+    DateTime SignAt,
+    DateTime CreatedAt)
+{
+    public ProposalResponse? Proposal { get; set; }
+}

@@ -2,11 +2,6 @@
 
 public record ContractBriefResponse(
     Guid Id,
-    Guid IdClient,
-    int IdStatus,
-    int IdInsuranceType,
-    int IdPaymentMethod,
-    DateOnly StartAt,
-    DateOnly EndAt,
-    DateTime CreatedAt,
-    DateTime? UpdatedAt);
+    Guid IdProposal,
+    DateTime SignAt,
+    DateTime CreatedAt);

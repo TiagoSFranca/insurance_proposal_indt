@@ -1,93 +1,92 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace ProposalService.Persistence
+namespace ProposalService.Persistence;
+
+public class ProposalInitializer
 {
-    public class ProposalInitializer
+    private readonly IProposalContext _context;
+    private readonly ILogger<ProposalInitializer> _logger;
+
+    public ProposalInitializer(IProposalContext context, ILogger<ProposalInitializer> logger)
     {
-        private readonly IProposalContext _context;
-        private readonly ILogger<ProposalInitializer> _logger;
+        _context = context;
+        _logger = logger;
+    }
 
-        public ProposalInitializer(IProposalContext context, ILogger<ProposalInitializer> logger)
+    public async Task Initialize()
+    {
+        try
         {
-            _context = context;
-            _logger = logger;
-        }
+            _logger.LogInformation("Applying migration...");
 
-        public async Task Initialize()
+            await _context.Database.MigrateAsync();
+        }
+        catch (Exception ex)
         {
-            try
-            {
-                _logger.LogInformation("Applying migration...");
-
-                await _context.Database.MigrateAsync();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "An error occurred while applying migration in database.");
-                throw new InitializationException(ex);
-            }
-            finally
-            {
-                _logger.LogInformation("Finish of applying migration.");
-            }
+            _logger.LogError(ex, "An error occurred while applying migration in database.");
+            throw new InitializationException(ex);
         }
-
-        public async Task Seed()
+        finally
         {
-            try
-            {
-                _logger.LogInformation("Seeding data...");
-
-                await TrySeedAsync();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "An error occurred while seeding the database.");
-                throw new InitializationException(ex);
-            }
-            finally
-            {
-                _logger.LogInformation("Finish of seeding data in db.");
-            }
+            _logger.LogInformation("Finish of applying migration.");
         }
+    }
 
-        private async Task TrySeedAsync()
+    public async Task Seed()
+    {
+        try
         {
-            await SeedInsuranceType();
-            await SeedPaymentMethod();
-            await SeedProposalStatus();
+            _logger.LogInformation("Seeding data...");
 
-            await _context.SaveChangesAsync();
+            await TrySeedAsync();
         }
-
-        private async Task SeedInsuranceType()
+        catch (Exception ex)
         {
-            if (await _context.InsuranceTypes.AnyAsync())
-                return;
-
-            _logger.LogDebug("Seeding {Name}...", nameof(InsuranceType));
-
-            _context.InsuranceTypes.AddRange(InsuranceType.Seeds);
+            _logger.LogError(ex, "An error occurred while seeding the database.");
+            throw new InitializationException(ex);
         }
-
-        private async Task SeedPaymentMethod()
+        finally
         {
-            if (await _context.PaymentMethods.AnyAsync())
-                return;
-
-            _logger.LogDebug("Seeding {Name}...", nameof(PaymentMethod));
-
-            _context.PaymentMethods.AddRange(PaymentMethod.Seeds);
+            _logger.LogInformation("Finish of seeding data in db.");
         }
+    }
 
-        private async Task SeedProposalStatus()
-        {
-            if (await _context.ProposalStatuses.AnyAsync())
-                return;
+    private async Task TrySeedAsync()
+    {
+        await SeedInsuranceType();
+        await SeedPaymentMethod();
+        await SeedProposalStatus();
 
-            _logger.LogDebug("Seeding {Name}...", nameof(ProposalStatus));
+        await _context.SaveChangesAsync();
+    }
 
-            _context.ProposalStatuses.AddRange(ProposalStatus.Seeds);
-        }
+    private async Task SeedInsuranceType()
+    {
+        if (await _context.InsuranceTypes.AnyAsync())
+            return;
+
+        _logger.LogDebug("Seeding {Name}...", nameof(InsuranceType));
+
+        _context.InsuranceTypes.AddRange(InsuranceType.Seeds);
+    }
+
+    private async Task SeedPaymentMethod()
+    {
+        if (await _context.PaymentMethods.AnyAsync())
+            return;
+
+        _logger.LogDebug("Seeding {Name}...", nameof(PaymentMethod));
+
+        _context.PaymentMethods.AddRange(PaymentMethod.Seeds);
+    }
+
+    private async Task SeedProposalStatus()
+    {
+        if (await _context.ProposalStatuses.AnyAsync())
+            return;
+
+        _logger.LogDebug("Seeding {Name}...", nameof(ProposalStatus));
+
+        _context.ProposalStatuses.AddRange(ProposalStatus.Seeds);
     }
 }
