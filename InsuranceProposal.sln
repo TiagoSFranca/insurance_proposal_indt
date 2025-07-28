@@ -25,13 +25,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProposalService.UnitTest", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{245A4E9E-553B-4199-809D-9D4022DE876A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContractService.Domain", "ContractService\src\ContractService.Domain\ContractService.Domain.csproj", "{A8675AA7-3951-48E2-975D-8B2289186073}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContractService.Domain", "ContractService\src\ContractService.Domain\ContractService.Domain.csproj", "{A8675AA7-3951-48E2-975D-8B2289186073}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContractService.Application", "ContractService\src\ContractService.Application\ContractService.Application.csproj", "{8CDFC255-8B02-4109-8D82-E14CF0A88EFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContractService.Application", "ContractService\src\ContractService.Application\ContractService.Application.csproj", "{8CDFC255-8B02-4109-8D82-E14CF0A88EFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContractService.Persistence", "ContractService\src\ContractService.Persistence\ContractService.Persistence.csproj", "{98BCE5C7-4E38-4229-BC2C-C3FC668E68FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContractService.Persistence", "ContractService\src\ContractService.Persistence\ContractService.Persistence.csproj", "{98BCE5C7-4E38-4229-BC2C-C3FC668E68FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContractService.Api", "ContractService\src\ContractService.Api\ContractService.Api.csproj", "{5F88A129-0810-4F2F-9253-B69BE8749FE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContractService.Api", "ContractService\src\ContractService.Api\ContractService.Api.csproj", "{5F88A129-0810-4F2F-9253-B69BE8749FE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContractService.UnitTest", "ContractService\tests\ContractService.UnitTest\ContractService.UnitTest.csproj", "{F4B3E6A0-7F97-4567-9029-B952701DCE68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsuranceProposal.UnitTest.Common", "InsuranceProposal.UnitTest.Common\InsuranceProposal.UnitTest.Common.csproj", "{E77B97D1-431E-4DCD-AAF1-1D54E146690E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +79,14 @@ Global
 		{5F88A129-0810-4F2F-9253-B69BE8749FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F88A129-0810-4F2F-9253-B69BE8749FE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F88A129-0810-4F2F-9253-B69BE8749FE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4B3E6A0-7F97-4567-9029-B952701DCE68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4B3E6A0-7F97-4567-9029-B952701DCE68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4B3E6A0-7F97-4567-9029-B952701DCE68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4B3E6A0-7F97-4567-9029-B952701DCE68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E77B97D1-431E-4DCD-AAF1-1D54E146690E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E77B97D1-431E-4DCD-AAF1-1D54E146690E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E77B97D1-431E-4DCD-AAF1-1D54E146690E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E77B97D1-431E-4DCD-AAF1-1D54E146690E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +105,7 @@ Global
 		{8CDFC255-8B02-4109-8D82-E14CF0A88EFF} = {28A971C7-B252-4BD4-AC94-DA8AAA64B8B7}
 		{98BCE5C7-4E38-4229-BC2C-C3FC668E68FB} = {28A971C7-B252-4BD4-AC94-DA8AAA64B8B7}
 		{5F88A129-0810-4F2F-9253-B69BE8749FE9} = {28A971C7-B252-4BD4-AC94-DA8AAA64B8B7}
+		{F4B3E6A0-7F97-4567-9029-B952701DCE68} = {245A4E9E-553B-4199-809D-9D4022DE876A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B23D3EAC-7CEA-4F07-98B2-DDEBB588D0D2}

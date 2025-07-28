@@ -1,4 +1,4 @@
-﻿namespace ProposalService.UnitTest._Helpers;
+﻿namespace InsuranceProposal.UnitTest.Common._Helpers;
 
 public static class BuilderHelpers
 {

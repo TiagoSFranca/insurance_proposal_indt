@@ -13,7 +13,6 @@
     <PackageReference Include="Bogus" Version="35.6.3" />
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
-    <PackageReference Include="MockQueryable.NSubstitute" Version="7.0.3" />
     <PackageReference Include="NSubstitute" Version="5.3.0" />
     <PackageReference Include="xunit" Version="2.5.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
@@ -21,9 +20,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\InsuranceProposal.UnitTest.Common\InsuranceProposal.UnitTest.Common.csproj" />
-    <ProjectReference Include="..\..\src\ProposalService.Application\ProposalService.Application.csproj" />
-    <ProjectReference Include="..\..\src\ProposalService.Domain\ProposalService.Domain.csproj" />
-    <ProjectReference Include="..\..\src\ProposalService.Persistence\ProposalService.Persistence.csproj" />
+    <ProjectReference Include="..\..\src\ContractService.Application\ContractService.Application.csproj" />
+    <ProjectReference Include="..\..\src\ContractService.Domain\ContractService.Domain.csproj" />
+    <ProjectReference Include="..\..\src\ContractService.Persistence\ContractService.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>

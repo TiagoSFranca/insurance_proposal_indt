@@ -1,13 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MockQueryable.NSubstitute;
-using ProposalService.Domain.Entities.Base;
 
-namespace ProposalService.UnitTest._Extensions;
+namespace InsuranceProposal.UnitTest.Common._Extensions;
 
 public static class DbSetExtensions
 {
     public static DbSet<T> AsDbSet<T>(this List<T> items)
-        where T : DbEntity
+        where T : class
     {
         return (items ?? new List<T>())
             .AsQueryable()

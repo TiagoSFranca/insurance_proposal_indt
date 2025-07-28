@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProposalService.Domain.Entities.Base;
 
-namespace ProposalService.UnitTest._Helpers;
+namespace InsuranceProposal.UnitTest.Common._Helpers;
 
 public static class DbSetHelpers
 {
     public static DbSet<T> EmptyDbSet<T>()
-        where T : DbEntity
+        where T : class
     {
         var items = new List<T>();
 

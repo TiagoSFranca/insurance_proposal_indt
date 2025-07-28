@@ -1,5 +1,8 @@
 ﻿global using FluentValidation;
 global using FluentValidation.TestHelper;
+global using InsuranceProposal.UnitTest.Common._Builders;
+global using InsuranceProposal.UnitTest.Common._Extensions;
+global using InsuranceProposal.UnitTest.Common._Helpers;
 global using Microsoft.Extensions.Logging;
 global using NSubstitute;
 global using ProposalService.Application;
@@ -8,6 +11,4 @@ global using ProposalService.Domain.Interfaces;
 global using ProposalService.Domain.Requests;
 global using ProposalService.UnitTest._Builders.Entities;
 global using ProposalService.UnitTest._Builders.Requests;
-global using ProposalService.UnitTest._Extensions;
-global using ProposalService.UnitTest._Helpers;
-global using static ProposalService.UnitTest._Helpers.DbSetHelpers;
+global using static InsuranceProposal.UnitTest.Common._Helpers.DbSetHelpers;

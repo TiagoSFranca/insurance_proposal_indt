@@ -1,4 +1,4 @@
-﻿namespace ProposalService.UnitTest._Builders;
+﻿namespace InsuranceProposal.UnitTest.Common._Builders;
 
 public abstract class BaseBuilder<TConcrete>
 {

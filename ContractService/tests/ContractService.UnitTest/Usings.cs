@@ -1,0 +1,14 @@
+﻿global using ContractService.Domain.Entities;
+global using ContractService.Domain.Interfaces;
+global using ContractService.Domain.Interfaces.Repositories;
+global using ContractService.Domain.Requests;
+global using ContractService.Domain.Responses;
+global using ContractService.Domain.Responses.External;
+global using ContractService.UnitTest._Builders.Entities;
+global using ContractService.UnitTest._Builders.Requests;
+global using ContractService.UnitTest._Builders.Responses;
+global using InsuranceProposal.UnitTest.Common._Builders;
+global using InsuranceProposal.UnitTest.Common._Extensions;
+global using Microsoft.Extensions.Logging;
+global using NSubstitute;
+global using static InsuranceProposal.UnitTest.Common._Helpers.DbSetHelpers;
