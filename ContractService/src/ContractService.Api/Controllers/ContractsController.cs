@@ -1,4 +1,3 @@
-using ContractService.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContractService.Api.Controllers;
@@ -12,7 +11,7 @@ public class ContractsController : BaseController
         _service = service;
     }
 
-    [HttpPost]
+    [HttpPost("sign")]
     public async Task<ActionResult<Guid>> Sign([FromBody] SignContractRequest request)
     {
         var result = await _service.Sign(request);

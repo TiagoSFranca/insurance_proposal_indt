@@ -1,5 +1,4 @@
 ﻿using ContractService.Domain;
-using ContractService.Domain.Responses;
 using ContractService.Domain.Responses.External;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;

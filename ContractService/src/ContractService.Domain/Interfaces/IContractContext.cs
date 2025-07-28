@@ -1,16 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+﻿using InsuranceProposal.Common.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace ContractService.Domain.Interfaces;
 
-public interface IContractContext
+public interface IContractContext : IDbContext
 {
-    DatabaseFacade Database { get; }
-
     DbSet<Contract> Contracts { get; set; }
-
-    DbSet<TEntity> Set<TEntity>()
-        where TEntity : DbEntity;
-
-    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

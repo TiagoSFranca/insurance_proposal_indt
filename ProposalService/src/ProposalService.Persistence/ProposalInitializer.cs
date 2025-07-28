@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using InsuranceProposal.Common.Exceptions;
+using Microsoft.Extensions.Logging;
 
 namespace ProposalService.Persistence;
 

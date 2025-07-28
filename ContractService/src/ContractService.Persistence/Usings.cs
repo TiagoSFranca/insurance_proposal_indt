@@ -1,10 +1,10 @@
 ﻿global using ContractService.Domain.Entities;
-global using ContractService.Domain.Entities.Base;
-global using ContractService.Domain.Exceptions;
 global using ContractService.Domain.Interfaces;
 global using ContractService.Domain.Interfaces.Repositories;
 global using ContractService.Domain.Settings;
 global using ContractService.Persistence.Repositories;
+global using InsuranceProposal.Common.Entities;
+global using InsuranceProposal.Common.Responses;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Microsoft.Extensions.DependencyInjection;

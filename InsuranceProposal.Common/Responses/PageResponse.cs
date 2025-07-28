@@ -1,4 +1,6 @@
-﻿namespace ProposalService.Domain.Responses;
+﻿using InsuranceProposal.Common.Requests;
+
+namespace InsuranceProposal.Common.Responses;
 
 public class PageResponse<T>
 {

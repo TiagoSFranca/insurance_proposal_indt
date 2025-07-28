@@ -1,20 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+﻿using InsuranceProposal.Common.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProposalService.Domain.Interfaces;
 
-public interface IProposalContext
+public interface IProposalContext : IDbContext
 {
-    DatabaseFacade Database { get; }
-
     DbSet<Proposal> Proposals { get; set; }
     DbSet<Client> Clients { get; set; }
     DbSet<ProposalStatus> ProposalStatuses { get; set; }
     DbSet<InsuranceType> InsuranceTypes { get; set; }
     DbSet<PaymentMethod> PaymentMethods { get; set; }
-
-    DbSet<TEntity> Set<TEntity>()
-        where TEntity : DbEntity;
-
-    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

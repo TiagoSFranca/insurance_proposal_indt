@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using ProposalService.Api.Models;
 
 namespace ProposalService.Api.Controllers;
 

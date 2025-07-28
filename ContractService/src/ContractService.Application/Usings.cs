@@ -6,4 +6,7 @@ global using ContractService.Domain.Interfaces.Repositories;
 global using ContractService.Domain.Interfaces.Services;
 global using ContractService.Domain.Requests;
 global using ContractService.Domain.Responses;
+global using InsuranceProposal.Common.Helpers;
+global using InsuranceProposal.Common.Requests;
+global using InsuranceProposal.Common.Responses;
 global using Microsoft.Extensions.DependencyInjection;

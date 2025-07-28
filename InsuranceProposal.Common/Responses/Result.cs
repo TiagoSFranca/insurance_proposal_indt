@@ -1,4 +1,4 @@
-﻿namespace ContractService.Domain.Responses;
+﻿namespace InsuranceProposal.Common.Responses;
 
 public interface IResult
 {

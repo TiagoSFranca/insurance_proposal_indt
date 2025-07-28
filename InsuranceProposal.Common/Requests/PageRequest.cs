@@ -1,4 +1,4 @@
-﻿namespace ProposalService.Domain.Requests;
+﻿namespace InsuranceProposal.Common.Requests;
 
 public class PageRequest
 {

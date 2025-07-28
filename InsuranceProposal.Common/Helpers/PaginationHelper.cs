@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using InsuranceProposal.Common.Requests;
+using InsuranceProposal.Common.Responses;
+using Microsoft.EntityFrameworkCore;
 
-namespace ProposalService.Application;
+namespace InsuranceProposal.Common.Helpers;
 
 public static class PaginationHelper
 {

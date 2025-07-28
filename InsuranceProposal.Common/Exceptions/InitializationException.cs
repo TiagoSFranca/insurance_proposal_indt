@@ -1,4 +1,4 @@
-﻿namespace ProposalService.Domain.Exceptions;
+﻿namespace InsuranceProposal.Common.Exceptions;
 
 public class InitializationException : Exception
 {
